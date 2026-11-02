@@ -57,7 +57,7 @@ instead of installing the Python package with `pip`.
 
 ## Installation
 
-Clone or copy `brownnoise.py` into a directory of your choice.
+Clone or copy `noig.py` into a directory of your choice.
 
 For an isolated Python environment:
 
@@ -70,7 +70,7 @@ python3 -m pip install numpy sounddevice
 Then make the script executable:
 
 ``` bash
-chmod +x brownnoise.py
+chmod +x noig.py
 ```
 
 ## Basic usage
@@ -78,7 +78,7 @@ chmod +x brownnoise.py
 Start the default deep preset:
 
 ``` bash
-./brownnoise.py
+./noig.py
 ```
 
 Stop playback with `Ctrl-C`.
@@ -88,7 +88,7 @@ The script prints the active parameters when it starts.
 You can also run it explicitly with Python:
 
 ``` bash
-python3 brownnoise.py
+python3 noig.py
 ```
 
 ## Presets
@@ -98,7 +98,7 @@ python3 brownnoise.py
 The default preset. Low and dark without being excessively subsonic.
 
 ``` bash
-./brownnoise.py --preset deep
+./noig.py --preset deep
 ```
 
 ### Rumble
@@ -106,7 +106,7 @@ The default preset. Low and dark without being excessively subsonic.
 A darker, heavier sound with a lower low-pass cutoff.
 
 ``` bash
-./brownnoise.py --preset rumble
+./noig.py --preset rumble
 ```
 
 ### Balanced
@@ -115,7 +115,7 @@ A little more high-frequency content while retaining the brown-noise
 character.
 
 ``` bash
-./brownnoise.py --preset balanced
+./noig.py --preset balanced
 ```
 
 ### Ocean
@@ -123,7 +123,7 @@ character.
 Adds stronger slow amplitude movement to make the sound less static.
 
 ``` bash
-./brownnoise.py --preset ocean
+./noig.py --preset ocean
 ```
 
 ## Examples
@@ -131,13 +131,13 @@ Adds stronger slow amplitude movement to make the sound less static.
 Quiet, deep background noise:
 
 ``` bash
-./brownnoise.py --preset deep --volume 0.12
+./noig.py --preset deep --volume 0.12
 ```
 
 Extra-dark rumble:
 
 ``` bash
-./brownnoise.py \
+./noig.py \
     --corner 2 \
     --lowpass 100 \
     --highpass 15 \
@@ -147,19 +147,19 @@ Extra-dark rumble:
 Slowly evolving sound:
 
 ``` bash
-./brownnoise.py --preset ocean --modulation 0.25
+./noig.py --preset ocean --modulation 0.25
 ```
 
 Mono output:
 
 ``` bash
-./brownnoise.py --channels 1
+./noig.py --channels 1
 ```
 
 Use a fixed random seed:
 
 ``` bash
-./brownnoise.py --seed 1234
+./noig.py --seed 1234
 ```
 
 A fixed seed makes the generated sequence repeatable for the same
@@ -170,19 +170,19 @@ settings and runtime conditions.
 List available PortAudio devices:
 
 ``` bash
-./brownnoise.py --list-devices
+./noig.py --list-devices
 ```
 
 You can then select an output device by numeric ID or name:
 
 ``` bash
-./brownnoise.py --device 3
+./noig.py --device 3
 ```
 
 or:
 
 ``` bash
-./brownnoise.py --device "USB Audio"
+./noig.py --device "USB Audio"
 ```
 
 If playback fails with a PortAudio error, run `--list-devices` first and
@@ -193,7 +193,7 @@ choose an appropriate output device.
 Run:
 
 ``` bash
-./brownnoise.py --help
+./noig.py --help
 ```
 
 Available options:
@@ -236,7 +236,7 @@ Available options:
 A preset supplies defaults, but individual parameters can be overridden:
 
 ``` bash
-./brownnoise.py \
+./noig.py \
     --preset deep \
     --lowpass 90 \
     --highpass 12 \
@@ -272,7 +272,7 @@ The most useful parameters for making the sound deeper are:
 Lower values emphasize slower variations:
 
 ``` bash
-./brownnoise.py --corner 2
+./noig.py --corner 2
 ```
 
 ### `--lowpass`
@@ -280,13 +280,13 @@ Lower values emphasize slower variations:
 Lower values remove more high-frequency content:
 
 ``` bash
-./brownnoise.py --lowpass 100
+./noig.py --lowpass 100
 ```
 
 For a very dark sound:
 
 ``` bash
-./brownnoise.py --corner 2 --lowpass 80
+./noig.py --corner 2 --lowpass 80
 ```
 
 ### `--highpass`
@@ -296,13 +296,13 @@ value such as `12`--`20 Hz` is useful for keeping the signal from
 accumulating excessive subsonic energy:
 
 ``` bash
-./brownnoise.py --highpass 15
+./noig.py --highpass 15
 ```
 
 Set it to zero if you deliberately want to disable this filtering:
 
 ``` bash
-./brownnoise.py --highpass 0
+./noig.py --highpass 0
 ```
 
 Be careful with very low frequencies and high playback levels,
@@ -314,7 +314,7 @@ sub-bass.
 This adds slow volume movement:
 
 ``` bash
-./brownnoise.py --modulation 0.20
+./noig.py --modulation 0.20
 ```
 
 Use `0` for a static level.
@@ -328,14 +328,14 @@ of audio per callback.
 If you experience audio dropouts, try a larger block size:
 
 ``` bash
-./brownnoise.py --blocksize 2048
+./noig.py --blocksize 2048
 ```
 
 If your audio system is stable and you want lower callback latency, a
 smaller value may work:
 
 ``` bash
-./brownnoise.py --blocksize 512
+./noig.py --blocksize 512
 ```
 
 The script prioritizes simplicity and portability over highly optimized
@@ -364,13 +364,13 @@ python3 -m pip install sounddevice
 First list the available devices:
 
 ``` bash
-./brownnoise.py --list-devices
+./noig.py --list-devices
 ```
 
 Then explicitly select the desired output:
 
 ``` bash
-./brownnoise.py --device 3
+./noig.py --device 3
 ```
 
 If PortAudio itself is missing, install your distribution's PortAudio
@@ -385,7 +385,7 @@ sudo apt install libportaudio2
 Try increasing the block size:
 
 ``` bash
-./brownnoise.py --blocksize 2048
+./noig.py --blocksize 2048
 ```
 
 Also check that the selected output device is available and that the
@@ -406,7 +406,7 @@ The project is intentionally small:
 
 ``` text
 .
-└── brownnoise.py
+└── noig.py
 ```
 
 The main components are:
